@@ -9,7 +9,7 @@ import { Toaster } from './components/ui/sonner.jsx'
 import { GoogleOAuthProvider } from '@react-oauth/google'
 import Viewtrip from './view-trip/[tripId]/index.jsx'
 import MyTrips from './my-trips/index.jsx'
-
+const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
 const router=createBrowserRouter([
   {
     path:'/',
@@ -31,11 +31,10 @@ const router=createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID}>
-      <Header/>
-      <Toaster  />
-      <RouterProvider router={router} >
-        </RouterProvider>
+    <GoogleOAuthProvider clientId={clientId} redirectUri="http://localhost:5173">
+      <Header />
+      <Toaster />
+      <RouterProvider router={router} />
     </GoogleOAuthProvider>
   </React.StrictMode>,
 )
